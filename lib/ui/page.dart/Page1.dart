@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter2/ui/page.dart/camera.dart';
 
-import 'camera.dart';
 import 'chatapp.dart';
 import 'homepage.dart';
-import 'setting.dart';
+import 'profile.dart';
 
 class Page1 extends StatefulWidget {
-  const Page1({super.key});
+  const Page1({super.key, required String username});
 
   @override
   State<Page1> createState() => _Page1State();
@@ -18,9 +18,9 @@ class _Page1State extends State<Page1> {
   int _selectedIndex = 0;
   final _screens = [
     HomePage(),
-    ChatApp(),
-    const CameraPage(),
-    SettingScreen(profilePictureUrl: '',),
+    ChatApp(resultText: '', results: [], pickedImage: null,),
+    CameraPage(),
+    Settings(),
   ];
 
   @override
@@ -45,6 +45,7 @@ class _Page1State extends State<Page1> {
               _selectedIndex = index;
             });
           },
+          
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home_filled), label: "Home"),

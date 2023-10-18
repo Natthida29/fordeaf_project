@@ -1,133 +1,192 @@
-import 'package:flutter/material.dart';
-import 'package:quickalert/quickalert.dart';
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/material.dart';
 
-class SettingScreen extends StatelessWidget {
-  final String profilePictureUrl;
-  
-  SettingScreen({required this.profilePictureUrl});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile Page'),
-      ),
-      drawer: buildDrawer(),
-      body: buildProfileDetails(),
-    );
-  }
+// class SettingsPage extends StatefulWidget {
+//   @override
+//   _SettingsPageState createState() => _SettingsPageState();
+// }
 
-  Widget buildDrawer() {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-            ),
-            child: Text(
-              'Menu',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
-            ),
-          ),
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('Profile'),
-            onTap: () {
-              
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
-            onTap: () {
-              // Navigate to settings page if needed
-            },
-          ),
-          const SizedBox(height: 380),
-          ListTile(
-            onTap: () {
-              var context;
-              QuickAlert.show(
-                context: context,
-                type: QuickAlertType.confirm,
-                text: 'Do you want to logout?',
-                confirmBtnText: 'Yes',
-                cancelBtnText: 'No',
-                confirmBtnColor: Colors.lightBlue,
-                onConfirmBtnTap: () {
-                  Navigator.pushReplacementNamed(context, 'login');
-                },
-              );
-            },
-            leading: Container(
-              padding: const EdgeInsets.all(10),
-              // decoration: BoxDecoration(
-              //   color: Colors.redAccent.shade100,
-              //   shape: BoxShape.circle,
-              // ),
-              child: const Icon(
-                Icons.info_outline_rounded,
-                color: Colors.redAccent,
-                size: 35,
-              ),
-            ),
-            title: const Text(
-              "Log Out",
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 20,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+// class _SettingsPageState extends State<SettingsPage> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+//         elevation: 1,
+//         leading: IconButton(
+//           onPressed: () {
+//             Navigator.of(context).pop();
+//           },
+//           icon: Icon(
+//             Icons.arrow_back,
+//             color: Colors.green,
+//           ),
+//         ),
+//       ),
+//       body: Container(
+//         padding: EdgeInsets.only(left: 16, top: 25, right: 16),
+//         child: ListView(
+//           children: [
+//             Text(
+//               "Settings",
+//               style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+//             ),
+//             SizedBox(
+//               height: 40,
+//             ),
+//             Row(
+//               children: [
+//                 Icon(
+//                   Icons.person,
+//                   color: Colors.green,
+//                 ),
+//                 SizedBox(
+//                   width: 8,
+//                 ),
+//                 Text(
+//                   "Account",
+//                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+//                 ),
+//               ],
+//             ),
+//             Divider(
+//               height: 15,
+//               thickness: 2,
+//             ),
+//             SizedBox(
+//               height: 10,
+//             ),
+//             buildAccountOptionRow(context, "Change password"),
+//             buildAccountOptionRow(context, "Content settings"),
+//             buildAccountOptionRow(context, "Social"),
+//             buildAccountOptionRow(context, "Language"),
+//             buildAccountOptionRow(context, "Privacy and security"),
+//             SizedBox(
+//               height: 40,
+//             ),
+//             Row(
+//               children: [
+//                 Icon(
+//                   Icons.volume_up_outlined,
+//                   color: Colors.green,
+//                 ),
+//                 SizedBox(
+//                   width: 8,
+//                 ),
+//                 Text(
+//                   "Notifications",
+//                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+//                 ),
+//               ],
+//             ),
+//             Divider(
+//               height: 15,
+//               thickness: 2,
+//             ),
+//             SizedBox(
+//               height: 10,
+//             ),
+//             buildNotificationOptionRow("New for you", true),
+//             buildNotificationOptionRow("Account activity", true),
+//             buildNotificationOptionRow("Opportunity", false),
+//             SizedBox(
+//               height: 50,
+//             ),
+//             Center(
+//               child: OutlinedButton(
+//                 // Change OutlineButton to OutlinedButton
+//                 style: OutlinedButton.styleFrom(
+//                   // You can use the style parameter to customize the button's appearance
+//                   padding: EdgeInsets.symmetric(horizontal: 40),
+//                   shape: RoundedRectangleBorder(
+//                     borderRadius: BorderRadius.circular(20),
+//                   ),
+//                 ),
+//                 onPressed: () {},
+//                 child: Text(
+//                   "SIGN OUT",
+//                   style: TextStyle(
+//                     fontSize: 16,
+//                     letterSpacing: 2.2,
+//                     color: Colors.black,
+//                   ),
+//                 ),
+//               ),
+//             )
+//           ],
+//         ),
+//       ),
+//     );
+//   }
 
-  Widget buildProfileDetails() {
-    // Replace the following with your actual profile data
-    String profilePictureUrl =
-        'https://ss-images.saostar.vn/w800/pc/1655197228101/saostar-mgs496dpbs7wupkq.jpeg';
-    String username = 'Doctor Kyo';
-    String email = 'johndoe@example.com';
-    String age = 'Age 22 Years old';
+//   Row buildNotificationOptionRow(String title, bool isActive) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//       children: [
+//         Text(
+//           title,
+//           style: TextStyle(
+//               fontSize: 18,
+//               fontWeight: FontWeight.w500,
+//               color: Colors.grey[600]),
+//         ),
+//         Transform.scale(
+//             scale: 0.7,
+//             child: CupertinoSwitch(
+//               value: isActive,
+//               onChanged: (bool val) {},
+//             ))
+//       ],
+//     );
+//   }
 
-    return ListView(
-      padding: const EdgeInsets.all(16.0),
-      children: [
-        Align(
-          alignment: Alignment.topCenter,
-          child: CircleAvatar(
-            backgroundImage: NetworkImage(profilePictureUrl),
-            radius: 50,
-          ),
-        ),
-        const SizedBox(height: 16),
-        Text(
-          username,
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 8),
-        Text(
-          email,
-          style: const TextStyle(fontSize: 16, color: Colors.grey),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 8),
-        Text(
-          age,
-          style: const TextStyle(fontSize: 16, color: Colors.grey),
-          textAlign: TextAlign.center,
-        ),
-        Expanded(
-          child: Container(),
-        ), // This Expanded widget will take up the remaining space
-      ],
-    );
-  }
-}
+//   GestureDetector buildAccountOptionRow(BuildContext context, String title) {
+//     return GestureDetector(
+//       onTap: () {
+//         showDialog(
+//             context: context,
+//             builder: (BuildContext context) {
+//               return AlertDialog(
+//                 title: Text(title),
+//                 content: Column(
+//                   mainAxisSize: MainAxisSize.min,
+//                   children: [
+//                     Text("Option 1"),
+//                     Text("Option 2"),
+//                     Text("Option 3"),
+//                   ],
+//                 ),
+//                 actions: [
+//                   TextButton(
+//                     onPressed: () {
+//                       Navigator.of(context).pop();
+//                     },
+//                     child: Text("Close"),
+//                   )
+//                 ],
+//               );
+//             });
+//       },
+//       child: Padding(
+//         padding: const EdgeInsets.symmetric(vertical: 8.0),
+//         child: Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//           children: [
+//             Text(
+//               title,
+//               style: TextStyle(
+//                 fontSize: 18,
+//                 fontWeight: FontWeight.w500,
+//                 color: Colors.grey[600],
+//               ),
+//             ),
+//             Icon(
+//               Icons.arrow_forward_ios,
+//               color: Colors.grey,
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

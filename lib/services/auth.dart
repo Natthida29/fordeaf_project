@@ -6,9 +6,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 class User {
   final String uid;
   final String? username;
-  User({required this.uid, this.username});
-}
+  final String? role;
+  User({required this.uid, this.username, this.role});
 
+  get email => null;
+}
+class Doctor {
+  final String uid;
+  final String? username;
+  final String? specialty;
+
+  Doctor({required this.uid, this.username, this.specialty});
+}
 
 class AuthBase {
   User _userFromFirebase(UserCredential userCredential) {
@@ -20,7 +29,6 @@ class AuthBase {
     try {
       final userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-
       // Update the user's username in the database
       await FirebaseFirestore.instance
           .collection('users')
@@ -32,6 +40,52 @@ class AuthBase {
       print(e.toString());
       rethrow;
     }
+  }
+  Future<Doctor> registerDoctor(
+      String email, String password, String username, String specialty) async {
+    try {
+      final userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+      // Update the user's username and role in the database
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userCredential.user!.uid)
+          .set({
+        'username': username,
+        'uid': userCredential.user!.uid,
+        'role': 'doctor', // Add the doctor's role
+        'specialty': specialty,
+      });
+
+      return Doctor(
+        uid: userCredential.user!.uid,
+        username: username,
+        specialty: specialty,
+      );
+    } catch (e) {
+      print(e.toString());
+      rethrow;
+    }
+  }
+
+  Future<Doctor> loginAsDoctor(
+      String email, String password) async {
+    try {
+      final userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      return _doctorFromFirebase(userCredential);
+    } catch (e) {
+      print(e.toString());
+      rethrow;
+    }
+  }
+
+  Doctor _doctorFromFirebase(UserCredential userCredential) {
+    return Doctor(
+      uid: userCredential.user!.uid,
+      username: '',
+      specialty: '',
+    );
   }
 
   Future<User> loginWithEmailAndPassword(

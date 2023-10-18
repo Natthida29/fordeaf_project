@@ -47,21 +47,39 @@ dependencies:
   fluttertoast: ^8.0.8
   quickalert: ^1.0.1
   firebase_storage: ^11.2.4
-  shared_preferences: ^2.1.2
   flutter_chat_bubble: ^2.0.2
   cupertino_list_tile: ^0.2.1+1
-  http: ^1.1.0
-  web_socket_channel: ^2.4.0
   tflite: ^1.1.2
   image: ^4.0.17
   get: ^4.6.5
+  uuid: ^3.0.7
   permission_handler: ^10.4.3
-  flutter_slidable: ^3.0.0
+  image_cropper: ^5.0.0
+  flutter_local_notifications: ^15.1.0+1
+  flutter_speed_dial: ^7.0.0
+  shared_preferences: ^2.2.1
+  http: ^1.1.0
+  flutter_launcher_icons: ^0.13.1
+  photo_view: ^0.14.0
+  dio: ^5.3.2
+  image_gallery_saver: ^2.0.3
+  guarded_button: ^0.1.2
+  firebase_messaging: ^14.6.9
+  firebase_database: ^10.2.7
+  webview_flutter: ^4.4.1
+  video_thumbnail: ^0.5.3
+  video_player: ^2.7.2
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/icon.png"
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -84,9 +102,29 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/pic1.png
+    - assets/images/1.png
+    - assets/images/brain.png
+    - assets/images/head (1).png
+    - assets/images/head.png
+    - assets/images/human-body (1).png
+    - assets/images/human-body.png
+    - assets/images/leg (1).png
+    - assets/images/leg.png
+    - assets/images/neck (1).png
+    - assets/images/neck.png
     - assets/images/doctor.png
     - assets/images/doctor1.jpg
+    - assets/images/bg.jpg
     - assets/images/user.png
+    - assets/images/active.png
+    - assets/images/camera.png
+    - assets/images/camera2.png
+    - assets/images/chat-box.png
+    - assets/images/health-report.png
+    - assets/images/search.png
+    - assets/images/setting1.png
+    - assets/images/chatbot.png
+    - assets/images/communication.png
     - assets/model_unquant.tflite
     - assets/labels.txt
 

@@ -9,7 +9,8 @@ class AuthForm extends StatefulWidget {
   final AuthType authType;
   final String? username;
 
-  const AuthForm({Key? key, required this.authType, this.username}) : super(key: key);
+  const AuthForm({Key? key, required this.authType, this.username})
+      : super(key: key);
 
   @override
   _AuthFormState createState() => _AuthFormState();
@@ -53,7 +54,9 @@ class _AuthFormState extends State<AuthForm> {
                   ? 'Your password must be larger than 6 characters'
                   : null,
             ),
-            if (widget.authType == AuthType.register) // เพิ่มส่วนให้กรอกชื่อผู้ใช้เมื่อเป็นการลงทะเบียน
+            if (widget.authType ==
+                AuthType
+                    .register) // เพิ่มส่วนให้กรอกชื่อผู้ใช้เมื่อเป็นการลงทะเบียน
               Column(
                 children: [
                   const SizedBox(height: 10),
@@ -77,13 +80,24 @@ class _AuthFormState extends State<AuthForm> {
               onPressed: () async {
                 if (_formKey.currentState!.validate()) {
                   if (widget.authType == AuthType.login) {
-                    await authBase.loginWithEmailAndPassword(
-                        _email, _password);
-                    Navigator.of(context).pushReplacementNamed('page1');
+                    try {
+                      User user = await authBase.loginWithEmailAndPassword(
+                          _email, _password);
+                      if (_email == 'admin@example.com') {
+                        Navigator.of(context).pushReplacementNamed('admin');
+                      } else if (_email == 'doctor@example.com') {
+                        Navigator.of(context).pushReplacementNamed('doctor'); // เด้งไปยังหน้าหมอ
+                      } else {
+                        Navigator.of(context).pushReplacementNamed('page1');
+                      }
+                    } catch (e) {
+                      // Handle login errors here
+                      print(e.toString());
+                    }
                   } else {
                     await authBase.registerWithEmailAndPassword(
                         _email, _password, _username);
-                    await userService.createUser(_username, _email); // เพิ่มการสร้างข้อมูลผู้ใช้ใน Firestore
+                    await userService.createUser(_username, _email);
                     Navigator.of(context).pushReplacementNamed('page1');
                   }
                 }

@@ -3,11 +3,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter2/ui/page.dart/Page1.dart';
 import 'package:flutter2/ui/page.dart/camera.dart';
+import 'package:flutter2/ui/page.dart/profile.dart';
+import 'package:uuid/uuid.dart';
 
-import 'ui/page.dart/setting.dart';
+import 'ui/page.dart/doctor/chatdoctor.dart';
 import 'ui/screens/auth_screen.dart';
 import 'ui/screens/intro_screen.dart';
 
+var uuid = Uuid();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   cameras =await availableCameras();
@@ -45,12 +48,13 @@ class MyApp extends StatelessWidget {
       home: IntroScreen(),
       routes: {
         'intro': (context) => IntroScreen(),
-        'page1': (context) => const Page1(),
-        'camera': (context) => const CameraPage(),
+        'page1': (context) => Page1(username: '',),
+        'camera': (context) => CameraPage(),
         //'home': (context) => HomeScreen(),
-        'setting':(context) => SettingScreen(profilePictureUrl: '',),
+        'setting':(context) => Settings(),
         'login': (context) => const AuthScreen(authType: AuthType.login),
         'register': (context) => const AuthScreen(authType: AuthType.register),
+        'doctor':(context) =>  ChatDoctor(),
       },
     );
   }

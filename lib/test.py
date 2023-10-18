@@ -5,8 +5,8 @@ from cvzone.HandTrackingModule import HandDetector
 from cvzone.ClassificationModule import Classifier
 from csv import reader
 
-#cap=cv2.VideoCapture(0)
-cap = cv2.VideoCapture('Videos/deaf.mp4')
+cap=cv2.VideoCapture(0)
+#cap = cv2.VideoCapture('Videos/deaf.mp4')
 detector = HandDetector(maxHands=1)
 classifier = Classifier('Model/keras_model.h5','Model/labels.txt')
 
