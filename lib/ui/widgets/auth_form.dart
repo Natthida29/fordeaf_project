@@ -112,24 +112,6 @@ class _AuthFormState extends State<AuthForm> {
                 ),
               ),
             ),
-            if (widget.authType == AuthType.login) // เพิ่มปุ่ม Anonymous ในกรณีเข้าสู่ระบบ
-              ElevatedButton(
-                onPressed: () async {
-                  await authBase.signInAnonymously();
-                  Navigator.of(context).pushReplacementNamed('page1');
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.transparent,
-                  elevation: 0,
-                ),
-                child: const Text(
-                  'Login anonymously',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
           ],
         ),
       ),
